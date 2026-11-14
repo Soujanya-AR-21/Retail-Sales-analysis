@@ -177,4 +177,53 @@ Activate it in Windows PowerShell:
 ```powershell
 .\.venv\Scripts\Activate.ps1
 ```
+### Step 4: Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+### Step 5: Run Data Cleaning
+
+```bash
+python python/clean_data.py
+```
+
+### Step 6: Run Exploratory Data Analysis
+
+```bash
+python python/exploratory_analysis.py
+```
+
+### Step 7: Run SQL Analysis
+
+Import the dataset into MySQL and execute the queries available in:
+
+```text
+sql/retail_analysis.sql
+```
+
+### Step 8: Open the Power BI Dashboard
+
+Open:
+
+```text
+powerbi/Retail_Analysis_Dashboard.pbix
+```
+
+Use Power BI Desktop to explore the interactive dashboard.
+
+## 👩‍💻 Author
+
+**Soujanya A R**
+
+BCA Graduate | Aspiring Data Analyst
+
+- **GitHub:** [soujanya-AR-21](https://github.com/soujanya-AR-21)
+- **LinkedIn:** [Soujanya A R](https://linkedin.com/in/soujanya-a-r/)
+
+---
+
+⭐ If you find this project useful, feel free to explore the repository!
+
 
