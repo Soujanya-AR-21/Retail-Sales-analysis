@@ -40,10 +40,21 @@ retail-analysis/
 │   │   └── Sample - Superstore.csv
 │   │
 │   └── processed/
-│       ├── superstore_clean.csv
+│       ├── category_analysis.csv
+│       ├── category_sales.png
+│       ├── customer_analysis.csv
+│       ├── data_quality_report.pdf
+│       ├── loss_making_products.csv
 │       ├── missing_values_report.csv
+│       ├── monthly_analysis.csv
+│       ├── monthly_sales_trend.png
+│       ├── product_analysis.csv
 │       ├── records_for_review.csv
-│       └── data_quality_report.pdf
+│       ├── region_analysis.csv
+│       ├── regional_sales.png
+│       ├── subcategory_analysis.csv
+│       ├── subcategory_profit.png
+│       └── superstore_clean.csv
 │
 ├── python/
 │   ├── clean_data.py
