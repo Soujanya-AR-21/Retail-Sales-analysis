@@ -1,4 +1,3 @@
-
 import pandas as pd
 from pathlib import Path
 
@@ -112,8 +111,7 @@ for column in numeric_columns:
 # 8. IDENTIFY RECORDS FOR REVIEW
 # --------------------------------------------------
 
-review_reasons = pd.Series(
-    "",
+review_reasons = pd.Series( "",
     index=df.index,
     dtype="object"
 )
