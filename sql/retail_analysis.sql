@@ -1,8 +1,8 @@
-
 CREATE DATABASE IF NOT EXISTS retail_analysis;
 
 USE retail_analysis;
 
+-- Create the orders table to store retail transaction details.
 CREATE TABLE orders (
     Source_Row_Number INT,
     Row_ID INT,
@@ -28,7 +28,6 @@ CREATE TABLE orders (
     Profit DECIMAL(12,2)
 );
 
-
 USE retail_analysis;
 
 SELECT COUNT(*) AS total_records
@@ -38,9 +37,9 @@ SELECT *
 FROM orders
 LIMIT 10;
 
-
 USE retail_analysis;
 
+-- Calculate overall business performance metrics:
 SELECT
     ROUND(SUM(Sales), 2) AS Total_Sales,
     ROUND(SUM(Profit), 2) AS Total_Profit,
@@ -48,12 +47,14 @@ SELECT
     COUNT(DISTINCT Customer_ID) AS Total_Customers,
     COUNT(DISTINCT Product_ID) AS Total_Products,
     SUM(Quantity) AS Total_Quantity,
+    -- Calculate profit margin while avoiding division by zero.
     ROUND(
         SUM(Profit) / NULLIF(SUM(Sales), 0) * 100,
         2
     ) AS Profit_Margin_Percentage
 FROM orders;
 
+--  CATEGORY-WISE SALES AND PROFIT ANALYSIS
 SELECT
     Category,
     ROUND(SUM(Sales), 2) AS Total_Sales,
@@ -63,8 +64,7 @@ FROM orders
 GROUP BY Category
 ORDER BY Total_Sales DESC;
 
-
-
+--  MONTHLY SALES AND PROFIT TREND ANALYSIS
 SELECT
     YEAR(Order_Date) AS Sales_Year,
     MONTH(Order_Date) AS Sales_Month,
@@ -78,6 +78,7 @@ GROUP BY
     MONTHNAME(Order_Date)
 ORDER BY Sales_Year, Sales_Month;
 
+-- REGION-WISE SALES AND PROFIT ANALYSIS
 SELECT
     Region,
     ROUND(SUM(Sales), 2) AS Total_Sales,
@@ -87,33 +88,7 @@ FROM orders
 GROUP BY Region
 ORDER BY Total_Sales DESC;
 
-
-
-SELECT
-    YEAR(Order_Date) AS Sales_Year,
-    MONTH(Order_Date) AS Sales_Month,
-    MONTHNAME(Order_Date) AS Month_Name,
-    ROUND(SUM(Sales), 2) AS Total_Sales,
-    ROUND(SUM(Profit), 2) AS Total_Profit
-FROM orders
-GROUP BY
-    YEAR(Order_Date),
-    MONTH(Order_Date),
-    MONTHNAME(Order_Date)
-ORDER BY Sales_Year, Sales_Month;
-
-
-
-SELECT
-    Region,
-    ROUND(SUM(Sales), 2) AS Total_Sales,
-    ROUND(SUM(Profit), 2) AS Total_Profit,
-    COUNT(DISTINCT Order_ID) AS Total_Orders
-FROM orders
-GROUP BY Region
-ORDER BY Total_Sales DESC;
-
-
+--  TOP 10 CUSTOMERS ANALYSIS
 SELECT
     Customer_ID,
     MAX(Customer_Name) AS Customer_Name,
@@ -124,8 +99,7 @@ GROUP BY Customer_ID
 ORDER BY Total_Sales DESC
 LIMIT 10;
 
-
-
+--  TOP 10 PRODUCTS ANALYSIS
 SELECT
     Product_ID,
     MAX(Product_Name) AS Product_Name,
@@ -136,6 +110,7 @@ GROUP BY Product_ID
 ORDER BY Total_Sales DESC
 LIMIT 10;
 
+--  LOSS-MAKING PRODUCTS ANALYSIS
 SELECT
     Product_ID,
     MAX(Product_Name) AS Product_Name,
@@ -146,7 +121,7 @@ GROUP BY Product_ID
 HAVING SUM(Profit) < 0
 ORDER BY Total_Profit ASC;
 
-
+-- CUSTOMER SEGMENT ANALYSIS
 SELECT
     Segment,
     ROUND(SUM(Sales), 2) AS Total_Sales,
@@ -156,12 +131,7 @@ FROM orders
 GROUP BY Segment
 ORDER BY Total_Sales DESC;
 
-
-
-
 -- index
-
-
 USE retail_analysis;
 
 -- Index for order date analysis
@@ -184,9 +154,7 @@ ON orders(Category);
 CREATE INDEX idx_region
 ON orders(Region);
 
-
 SHOW INDEX FROM orders;
-
 
 -- Total records
 SELECT COUNT(*) AS Total_Records
