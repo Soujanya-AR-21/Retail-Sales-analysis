@@ -1,4 +1,3 @@
-
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -22,9 +21,7 @@ OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 # --------------------------------------------------
 
 if not CLEAN_FILE.exists():
-    raise FileNotFoundError(
-        f"Clean dataset not found: {CLEAN_FILE}"
-    )
+    raise FileNotFoundError(f"Clean dataset not found: {CLEAN_FILE}" )
 
 df = pd.read_csv(CLEAN_FILE)
 
