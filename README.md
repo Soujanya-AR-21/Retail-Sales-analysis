@@ -118,7 +118,7 @@ Created an interactive dashboard featuring:
 - Profit by Region
 - Monthly Sales Trend
 - Top 5 Products by Sales
-- Interactive filters for Order Date, Category, Region, and Segment.
+- Interactive filters for  Category, Region, and Segment.
 
 ### 5. Executive Presentation
 
